@@ -1,0 +1,13 @@
+Pet,SleepingPatterns,ActivityPatterns,Exercise,Diet,CommonHealthIssues,BehavioralPattern,ObedienceLevel,PredictedHealthConditionsLevel
+Cats,12 to 16 hours a day crepuscular,More active at dawn and dusk,Morning Playtime (Dawn),Main Meal,Obesity,Litter Box Use,Moderate,Moderate to High
+Cats,Long sleep duration,Crepuscular Behavior,Midday Nap (After Dawn),Light Snack,Dental Disease,Scratching,Low to Moderate,Moderate
+Cats,Most active at dawn and dusk,Peak Activity,Afternoon Enrichment (Pre-Dusk),Interactive Feeding,"Parasites (Fleas, Ticks, Worms)",Vocalization,Low,Moderate
+Cats,Multiple short naps throughout the day,Napping,Evening Playtime (Dusk),Main Meal,Urinary Tract Disease,Play,Low to Moderate,Moderate
+Dogs,10-14 hours a day; diurnal,More active during the day,Morning Walk,Main Meal,Obesity,House Training,Moderate,Moderate to High
+Dogs,Moderate sleep duration,Daytime Activity,Afternoon Playtime,Light Snack,Dental Disease,Barking,Low to Moderate,Moderate
+Dogs,Regular sleep patterns,Peak Activity in the evening,Evening Run,Interactive Feeding,"Parasites (Fleas, Ticks, Worms)",Digging,Low,Moderate
+Dogs,Varied sleep durations,Variable Activity,Throughout the day,Main Meal,Joint Problems,Chewing,Low to Moderate,Moderate
+Rabbits,8-10 hours a day; nocturnal,Most active in the evening,Evening Hopping,"Hay, Fresh Vegetables, Pellets",Obesity,Digging,Low to Moderate,Moderate
+Rabbits,Variable sleep patterns,Moderate daytime activity,Daytime Exploration,"Fresh Greens, Occasional Treats",Dental Issues,Thumping,Low to Moderate,Moderate
+Rabbits,Daytime napping,Binky (joyful leaps),Running in Playpen,"Unlimited Hay, Fresh Vegetables",Hairballs,Socialization,Low,Moderate
+Rabbits,Restful sleep during the day,Limited activity,Free-roam playtime,"Hay, Pellets, Occasional Treats",Gastrointestinal Issues,Licking,Low to Moderate,Moderate

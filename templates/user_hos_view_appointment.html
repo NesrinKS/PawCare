@@ -1,0 +1,32 @@
+{% include 'user_header.html'%}
+<br>	<br>	<br>	
+<center>
+	<h1>View Appointments</h1>
+	<table class="table">
+		<tr>
+			<th>hospital Name</th>
+			<th>pet Name</th>
+			<th>Date</th>
+			<th>Booking Date</th>
+			<th>Amount</th>
+			<th>Status</th>
+		</tr>
+		{% for i in data['view']%}
+		<tr>
+			<td>{{i['hospital_name']}}</td>
+			<td>{{i['pet_name']}}</td>
+			<td>{{i['date']}}</td>
+			<td>{{i['booking_date']}}</td>
+			<td>{{i['amount']}}</td>
+			<td>{{i['status']}}</td>
+			{% if i['status']=='addamount'%}
+			<td><a href="user_make_hos_payment?pid={{i['vet_appointment_id']}}&amo={{i['amount']}}" class="btn btn-info">Make Payment</a></td>
+			{%endif%}
+			
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

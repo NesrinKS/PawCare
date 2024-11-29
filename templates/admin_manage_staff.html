@@ -1,0 +1,126 @@
+{% include 'admin_header.html'%}
+
+
+ <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header1">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h1 class="display-1 text-uppercase text-dark mb-lg-4">Staff</h1>
+<!--                     <h1 class="text-uppercase text-white mb-lg-4">Make Your Pets Happy</h1>
+ -->                    <form method="post">
+		{% if data['up'] %}
+		<table>
+			<tr>
+				<th style="padding: 20px">First Name</th>
+				<td><input type="text" name="fname" value="{{data['up'][0]['fname']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Last Name</th>
+				<td><input type="text" name="lname" value="{{data['up'][0]['lname']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Place</th>
+				<td><input type="text" value="{{data['up'][0]['place']}}" name="place" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}"  required value="{{data['up'][0]['phone']}}" class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Email</th>
+				<td><input type="email" value="{{data['up'][0]['email']}}" name="email" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Specialization</th>
+				<td><input type="text" name="specialization"  value="{{data['up'][0]['specialization']}}" required class="form-control"></td>
+			</tr>
+		
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" name="update" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<table>
+			<tr>
+				<th style="padding: 20px">First Name</th>
+				<td><input type="text" name="fname" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Last Name</th>
+				<td><input type="text" name="lname" required class="form-control"></td>
+			</tr>
+
+			<tr>
+				<th style="padding: 20px">Place</th>
+				<td><input type="text" name="place" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Phone</th> 
+				<td><input type="text" name="phone" pattern="[0-9]{10}" maxlength="10" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Email</th>
+				<td><input type="email" name="email" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Specialization</th>
+				<td><input type="text" name="specialization" required p class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Username</th>
+				<td><input type="text" name="uname" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Password</th>
+				<td><input type="Password" name="passw" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" name="add_hos" class="btn btn-success"></td>
+			</tr>
+		</table>
+{% endif%}
+	</form>
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                        <!-- <a href="login" class="btn btn-outline-light border-2 py-md-3 px-md-5 me-5">Read More</a>
+ -->                        <!-- <button type="button" class="btn-play" data-bs-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal"> -->
+                            <span></span>
+                        </button>
+                        <!-- <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Play Video</h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+<center>
+	<h1>View Staff</h1>
+	
+
+
+	<table class="table">
+		<tr>
+			<th>Staff Name</th>
+			<th>Place</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Specialization</th>
+		</tr>
+		{% for i in data['view']%}
+		<tr>
+			<td>{{i['fname']}} {{i['lname']}}</td>
+			<td>{{i['place']}}</td>
+			<td>{{i['phone']}}</td>
+			<td>{{i['email']}}</td>
+			<td>{{i['specialization']}}</td>
+			<td><a href="?action=update&sid={{i['staff_id']}}&log_id={{i['login_id']}}" class="btn btn-success">Update</a></td>
+			<td><a href="?action=delete&sid={{i['staff_id']}}&log_id={{i['login_id']}}" class="btn btn-danger">Delete</a></td>
+
+		</tr>
+		{%endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

@@ -1,0 +1,109 @@
+{% include 'public_header.html'%}
+
+<script type="text/javascript">
+function myfunction(event) {
+    var pa = document.getElementById('pwd').value;
+    var cpa = document.getElementById('c_pwd').value;
+    
+    if (pa === cpa) {
+        // Passwords match, continue with form submission
+    } else {
+        // Passwords don't match, prevent form submission and show an alert
+        event.preventDefault();
+        alert("Passwords do not match. Please check your password.");
+    }
+}
+
+</script>
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-150 rounded" src="static/img/p_shop1.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                      <br>    <br>   <br>    <br>   <br>    <br> 
+                    <div class="border-start border-5 border-primary ps-5 mb-5">
+                        <!-- <h6 class="text-primary text-uppercase">About Us</h6> -->
+
+                        <h1 class="display-5 text-uppercase mb-0">Login</h1>
+                    </div>
+                    <!-- <h4 class="text-body mb-4">Diam dolor diam ipsum tempor sit. Clita erat ipsum et lorem stet no labore lorem sit clita duo justo magna dolore</h4> -->
+                    <div class="bg-light p-4">
+                        <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100 active" id="pills-1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1"
+                                    aria-selected="true">Login</button>
+                            </li>
+                            <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100" id="pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2"
+                                    aria-selected="false">ForgotPassword</button>
+                            </li>
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                                <center> 
+                                <form method="post">   
+                                <table style="text-align: center;">
+<tr>
+    <th style="padding: 20px">Username</th>
+            <td><input type="text" required="" class="form-control" name="uname" placeholder="Enter UserName"></td>
+        </tr>
+        <tr>
+
+            <th style="padding: 20px">Password</th>
+            <td><input type="password" required="" class="form-control" name="pwd" placeholder="Enter password"></td>
+        </tr>
+       <!--  <tr>
+            <td style="text-align: center;" colspan="2"><a href="forgot" style="color: red;">ForgotPassword</a></td>
+        </tr> -->
+        <tr>
+            <td style="text-align: center;"colspan="2">
+                <input type="submit" class="btn btn-success" name="login" value="Login">
+            </td>
+        </tr>
+
+
+        </table>
+
+        </form>
+        </center>
+                            </div>
+                            <div class="tab-pane fade" id="pills-2" role="tabpanel" aria-labelledby="pills-2-tab">
+                             <center>
+                                  <form method="post">
+                                    <table> 
+                                        <tr>
+                                            <th style="padding: 20px">Username</th>
+                                            <td><input type="text" name="uname" class="form-control" required=""></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding: 20px">New Password</th>
+                                            <td><input type="password" id="pwd" name="pass1" class="form-control" required=""></td>
+                                        </tr>
+                                        <tr>
+                                            <th style="padding: 20px">Confirm Password</th>
+                                            <td><input type="password" id="c_pwd" name="pass2" class="form-control" required=""></td>
+                                        </tr>
+                                        <tr>
+                                            <td style="text-align: center;" colspan="2"><input type="submit" name="cha_pass" onclick="myfunction(event);" class="btn btn-success"></td>
+                                        </tr>
+
+                                    </table>
+                               </form>
+                             </center>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+{%include 'footer.html'%}

@@ -1,0 +1,40 @@
+{% include 'staff_header.html'%}
+<br>	<br>	<br>	
+<center>
+	<h1>View Appointment</h1>
+	<table class="table">
+		<tr>
+			<th>category</th>
+			<th>first name</th>
+			<th>STATUS </th>
+			<th>date</th>
+			<th>pet Name</th>
+			<th>Amount</th>
+
+		</tr>
+		{% for i in data['view']%}
+		<tr>
+			<td>{{i['category_name']}}</td>
+			<td>{{i['first_name']}}</td>
+			<td>{{i['status']}}</td>
+			<td>{{i['date']}}</td>
+			<td>{{i['pet_name']}}</td>
+			<td>{{i['amount']}}</td>
+			{% if i['ap_status']=='pending'%}
+			<td><a href="?action=accept&appointment_id={{i['appointment_id']}}" class="btn btn-success">Accept</a></td>
+			<td><a href="?action=reject&appointment_id={{i['appointment_id']}}" class="btn btn-danger">Reject</a></td>
+			{%endif%}
+
+			{% if i['ap_status']=='assigned'%}
+			<td><a href="addamount?appointment_id={{i['appointment_id']}}" class="btn btn-success">Add Amount</a></td>
+			
+			{%endif%}
+			<td><a href="user_chat?slid={{i['u_lid']}}">Chat</a></td>
+
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

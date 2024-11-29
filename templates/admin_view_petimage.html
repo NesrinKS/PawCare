@@ -1,0 +1,27 @@
+{% include 'admin_header.html'%}
+
+
+
+<center>
+    <div class="container">
+        <div class="row">
+            {% for i in data['view'] %}
+            <div class="col-md-4">
+                <div class="card mb-4">
+                    {% if i['type'] == 'image' %}
+                        <img src="/{{i['file']}}" class="card-img-top" alt="Image" style="height: 400px; object-fit: cover;">
+                    {% elif i['type'] == 'video' %}
+                        <video class="card-img-top" style="height: 400px; object-fit: cover;" controls>
+                            <source src="/{{i['file']}}" type="video/mp4">
+                            Your browser does not support the video tag.
+                        </video>
+                    {% endif %}
+                    
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</center>
+
+{% include 'footer.html'%}

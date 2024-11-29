@@ -1,0 +1,117 @@
+{% include 'user_header.html'%}
+
+<!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header4">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h1 class="display-1 text-uppercase text-dark mb-lg-4" ><span style="color: white">Add Pet</span></h1>
+<!--                     <h1 class="text-uppercase text-white mb-lg-4">Make Your Pets Happy</h1>
+ -->                   <form method="post" enctype="multipart/form-data">
+		{% if data['up'] %}
+		<table>
+			<tr>
+				<th style="padding: 20px">Name</th>
+				<td><input type="text" name="pet_name" value="{{data['up'][0]['pet_name']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Age</th>
+				<td><input type="number" name="age" value="{{data['up'][0]['age']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Color</th>
+				<td><input type="text" name="color" value="{{data['up'][0]['color']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Breed</th>
+				<td><input type="text" name="breed" value="{{data['up'][0]['breed']}}"  required class="form-control"></td>
+			</tr>
+			<!-- <tr>
+				<th style="padding: 20px">Image</th>
+				<td><input type="file" name="p_image" required class="form-control"></td>
+			</tr> -->
+			<tr>
+				<th style="padding: 20px">Gender</th>
+				<td><select name="gender" class="form-control"><option value="male">Male</option>
+					<option value="Female">Female</option></select></td>
+			</tr>
+				<tr>
+				<th style="padding: 20px">Price</th>
+				<td><input type="text" name="price" value="{{data['up'][0]['price']}}" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" name="update" class="btn btn-success"></td>
+			</tr>
+		</table>
+		{% else %}
+		<table>
+			<tr>
+				<th style="padding: 20px">Name</th>
+				<td><input type="text" name="pet_name" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Age</th>
+				<td><input type="number" name="age" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Color</th>
+				<td><input type="text" name="color" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Breed</th>
+				<td><input type="text" name="breed" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Gender</th>
+				<td><select name="gender" class="form-control"><option value="male">Male</option>
+					<option value="Female">Female</option></select></td>
+			</tr>
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" name="pet_add" class="btn btn-success"></td>
+			</tr>
+		</table>
+{% endif%}
+	</form>
+
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                        <!-- <a href="login" class="btn btn-outline-light border-2 py-md-3 px-md-5 me-5">Read More</a> -->
+                        <!-- <button type="button" class="btn-play" data-bs-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal"> -->
+                            <span></span>
+                        </button>
+                        <!-- <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Play Video</h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+<center>
+		<table class="table">
+		<tr>
+			<th>Pet name</th>
+			<th>Age</th>
+			<th>Color</th>
+			<th>Breed</th>
+			<th>Gender</th>
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+		<td>{{i['pet_name']}}</td>
+		<td>{{i['age']}}</td>
+		<td>{{i['color']}}</td>
+		<td>{{i['breed']}}</td>
+		<td>{{i['gender']}}</td>
+		
+		<td><a href="?action=update&pet_id={{i['pet_id']}}" class="btn btn-success">Update</a></td>
+		<td><a href="?action=delete&pet_id={{i['pet_id']}}" class="btn btn-danger">Delete</a></td>
+		<td><a href="user_add_image?pet_id={{i['pet_id']}}" class="btn btn-danger">Gallery</a></td>
+		<td><a href="user_make_appointment?pet_id={{i['pet_id']}}" class="btn btn-danger">Make appointments</a></td>
+
+	<td><a href="user_view_Veterinary_officials?pet_id={{i['pet_id']}}" class="btn btn-danger">Veterinary officials</a></td>
+	</tr>
+		{% endfor%}
+	</table>
+</center>
+
+{% include 'footer.html'%}

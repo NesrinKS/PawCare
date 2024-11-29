@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Cart</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+            margin: 0;
+            padding: 0;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 15px;
+        }
+        .team-member {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin: 15px;
+            overflow: hidden;
+            transition: transform 0.3s;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .team-member:hover {
+            transform: translateY(-10px);
+        }
+        .team-img img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        .team-info {
+            padding: 15px;
+            flex-grow: 1;
+        }
+        .team-info h3, .team-info span, .team-info p {
+            margin: 5px 0;
+        }
+        .btn {
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .btn-danger {
+            background-color: #e74c3c;
+            color: #fff;
+        }
+        .btn-success {
+            background-color: #2ecc71;
+            color: #fff;
+        }
+        .total-container {
+            margin-top: 20px;
+            text-align: right;
+        }
+        .total-container h3 {
+            margin: 0;
+            opacity: 0.7;
+        }
+    </style>
+</head>
+<body>
+
+{% include 'user_header.html' %}
+
+<center>
+  <h1>MY CART</h1>
+  <div class="container">
+    <form method="post">
+      <div class="row">
+        {% if data['view_book_cart'] %}
+          {% for row in data['view_book_cart'] %}
+            <div class="col-sm-6 col-md-4">
+              <div class="team-member">
+                <div class="team-img">
+                <!--   <img class="img-responsive" src="/{{ row['image'] }}" alt="Product Image" > -->
+                </div>
+                <div class="team-info">
+                  <h3>Product Name: <b>{{ row['accessories'] }}</b></h3>
+                  <span><b>Date:</b> {{ row['date'] }}</span>
+                  <p><b>Quantity:</b> {{ row['rr'] }}</p>
+                  <p><b>Price:</b> {{ row['c_t'] }}</p>
+                  
+                  <a class="btn btn-danger" href="?actionn1=remove&oid={{ row['sales_master_id'] }}&amo={{ row['c_t'] }}&odid={{ row['sales_child_id'] }}">
+                    <i class="fas fa-trash-alt"></i> REMOVE
+                  </a>
+                </div>
+              </div>
+            </div>
+          {% endfor %}
+
+            <div class="total-container">
+              <h3>Total Amount:</h3>
+              <p><span id="total_amount">{{ data['view_book_cart'][0]['total'] }}</span></p>
+              <a class="btn btn-success" href="user_make_pet_payment?amo={{ data['view_book_cart'][0]['total'] }}&pid={{ data['view_book_cart'][0]['sales_master_id'] }}">
+                <i class="fas fa-credit-card"></i> Make Payment
+              </a>
+            </div>
+          
+        {% else %}
+          <h3>Oops. Your Cart is Empty.</h3>
+        {% endif %}
+      </div>
+    </form>
+  </div>
+</center>
+
+{% include 'footer.html' %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

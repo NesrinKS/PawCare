@@ -1,0 +1,90 @@
+{%include 'public_header.html'%}
+
+
+
+    <!-- About Start -->
+    <div class="container-fluid py-5">
+        <div class="container">
+            <div class="row gx-5">
+                <div class="col-lg-5 mb-5 mb-lg-0" style="min-height: 500px;">
+                    <div class="position-relative h-100">
+                        <img class="position-absolute w-100 h-100 rounded" src="static/img/p_shop2.jpg" style="object-fit: cover;">
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="border-start border-5 border-primary ps-5 mb-5">
+                        <!-- <h6 class="text-primary text-uppercase">About Us</h6> -->
+                        <h1 class="display-5 text-uppercase mb-0">Shop Register</h1>
+                    </div>
+                    <!-- <h4 class="text-body mb-4">Diam dolor diam ipsum tempor sit. Clita erat ipsum et lorem stet no labore lorem sit clita duo justo magna dolore</h4> -->
+                    <div class="bg-light p-4">
+                        <ul class="nav nav-pills justify-content-between mb-3" id="pills-tab" role="tablist">
+                           <!--  <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100 active" id="pills-1-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-1" type="button" role="tab" aria-controls="pills-1"
+                                    aria-selected="true">Login</button>
+                            </li> -->
+                            <!-- <li class="nav-item w-50" role="presentation">
+                                <button class="nav-link text-uppercase w-100" id="pills-2-tab" data-bs-toggle="pill"
+                                    data-bs-target="#pills-2" type="button" role="tab" aria-controls="pills-2"
+                                    aria-selected="false">ForgotPassword</button>
+                            </li> -->
+                        </ul>
+                        <div class="tab-content" id="pills-tabContent">
+                            <div class="tab-pane fade show active" id="pills-1" role="tabpanel" aria-labelledby="pills-1-tab">
+                            	<center>	
+                               
+       <form method="post" enctype="multipart/form-data">
+		<table>
+			<tr>
+				<th style="padding: 20px">Shop Name</th>
+				<td><input type="text" required name="s_name" class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Place</th>
+				<td><input type="text" name="place" required class="form-control"></td>
+			</tr>
+            <tr>
+                <th style="padding: 20px">Owner Name</th>
+                <td><input type="text" name="o_name" required class="form-control"></td>
+            </tr>
+             <tr>
+                <th style="padding: 20px">Shop Document</th>
+                <td><input type="file" name="s_file" required class="form-control"></td>
+            </tr>
+			<tr>
+				<th style="padding: 20px">Email</th>
+				<td><input type="email" name="email" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Phone</th>
+				<td><input type="text" name="phone" pattern="[0-9]{10}" maxlength="10" required class="form-control"></td>
+			</tr>
+				<tr>
+				<th style="padding: 20px">Username</th>
+				<td><input type="text" name="uname" required class="form-control"></td>
+			</tr>
+			<tr>
+				<th style="padding: 20px">Password</th>
+				<td><input type="Password" name="passw" required class="form-control"></td>
+			</tr>
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" name="shop_reg" class="btn btn-success"></td>
+			</tr>
+		</table>
+	</form>
+</center>
+
+                            </div>
+                           
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- About End -->
+<center>
+	<H1></H1>
+	
+{% include 'footer.html'%}

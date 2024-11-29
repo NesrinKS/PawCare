@@ -1,0 +1,20 @@
+{% include 'shop_header.html'%}
+
+<center>
+	<h1>Vaccination</h1>
+	<table class="table">
+		<tr>
+			<th>Name</th>
+			<th>Amount</th>
+			<th>Details</th>
+		</tr>
+		{% for i in data['view']%}
+		<tr>
+			<td>{{i['vaccine_name']}}</td>
+			<td>{{i['amount']}}</td>
+			<td>{{i['details']}}</td>
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+{% include 'footer.html'%}

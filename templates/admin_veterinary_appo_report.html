@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .report-header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .report-header h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        .report-header h2 {
+            font-size: 24px;
+            color: #555;
+        }
+        .search-form {
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .report-table th, .report-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .report-table th {
+            background-color: #f8f9fa;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .report-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function printDiv() {
+            var divContents = document.getElementById("div_print").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html>');
+            a.document.write('<head><title>Appointment Report</title></head>');
+            a.document.write('<body>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+
+        function filterByDate() {
+            var fromDate = new Date(document.getElementById("fromDate").value);
+            var toDate = new Date(document.getElementById("toDate").value);
+            var table = document.getElementById("reportTable");
+            var tr = table.getElementsByTagName("tr");
+
+            for (var i = 1; i < tr.length; i++) {
+                var td = tr[i].getElementsByTagName("td")[4];
+                if (td) {
+                    var bookingDate = new Date(td.textContent || td.innerText);
+                    if (bookingDate >= fromDate && bookingDate <= toDate) {
+                        tr[i].style.display = "";
+                    } else {
+                        tr[i].style.display = "none";
+                    }
+                }       
+            }
+        }
+    </script>
+</head>
+
+
+<div id="div_print" class="report-container">
+    <div class="report-header">
+        <h1>Veterinary Appointments Report</h1>
+    </div>
+    <div class="search-form">
+        <label for="fromDate">From: </label>
+        <input type="date" id="fromDate" name="fromDate">
+        <label for="toDate">To: </label>
+        <input type="date" id="toDate" name="toDate">
+        <button class="btn btn-primary" onclick="filterByDate()">Filter</button>
+    </div>
+    <table id="reportTable" class="report-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Veterinary Name</th>
+                <th>Pet Name</th>
+                <th>User Name</th>
+                <th>Booking Date</th>
+                <th>Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data['view'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{i['hospital_name']}}</td>
+                <td>{{i['pet_name']}}</td>
+                <td>{{ i['first_name'] }} {{ i['last_name'] }}</td>
+                <td>{{i['booking_date']}}</td>
+                <td>{{ i['amount'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div class="report-footer">
+        <p>Generated on: {{ current_date }}</p>
+    </div>
+</div>
+<center><button class="btn btn-info print-button" onclick="printDiv()">Print</button></center>
+
+</body>
+</html>

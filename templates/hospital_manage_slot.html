@@ -1,0 +1,93 @@
+{% include 'hospitals_header.html'%}
+
+  <!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header3">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-4 text-center text-lg-start">
+                    <h1 class="display-1 text-uppercase text-dark mb-lg-4">Add Slot</h1>
+<!--                     <h1 class="text-uppercase text-white mb-lg-4">Make Your Pets Happy</h1>
+ -->                 <center>
+	<form method="post">
+		{% if data['up'] %}
+	<table>
+		
+		<tr>
+			<th style="padding: 20px">vaccine Name</th>
+			<td><select name="v_name" class="form-control">
+<!-- 				<option selected hidden disabled>Select</option>
+ -->				{% for i in data['hosp']%}
+				<option value="{{data['vacc'][0]['vaccine_id']}}">{{data['vacc'][0]['vaccine_name']}}</option>
+				{% endfor%}
+			</select></td>
+		</tr>
+		<tr>
+			<th style="padding: 20px">Slot</th>
+			<td><input type="text" name="slot" value="{{data['up'][0]['slot']}}" class="form-control"></td>
+		</tr>
+		<tr>
+			<th style="padding: 20px">Quantity</th>
+			<td><input type="text" name="qty" value="{{data['up'][0]['quantity']}}" class="form-control"></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;" colspan="2"><input type="submit" name="update" class="btn btn-success"></td>
+		</tr>
+	</table>
+	{%else%}
+	<table>
+		
+		<tr>
+			<th style="padding: 20px">vaccine Name</th>
+			<td><select name="v_name" class="form-control">
+				<option selected hidden disabled>Select</option>
+				{% for i in data['hosp']%}
+				<option value="{{data['vacc'][0]['vaccine_id']}}">{{data['vacc'][0]['vaccine_name']}}</option>
+				{% endfor%}
+			</select></td>
+		</tr>
+		<tr>
+			<th style="padding: 20px">Slot</th>
+			<td><input type="text" name="slot" class="form-control"></td>
+		</tr>
+		<tr>
+			<th style="padding: 20px">Quantity</th>
+			<td><input type="text" name="qty" class="form-control"></td>
+		</tr>
+		<tr>
+			<td style="text-align: center;" colspan="2"><input type="submit" name="addslot" class="btn btn-success"></td>
+		</tr>
+	</table>
+	</form>
+{% endif%}
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                        <!-- <a href="login" class="btn btn-outline-light border-2 py-md-3 px-md-5 me-5">Read More</a> -->
+                        <!-- <button type="button" class="btn-play" data-bs-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal"> -->
+                            <span></span>
+                        </button>
+                        <!-- <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Play Video</h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+
+	<table class="table">
+		<tr>
+			<th>Vaccine Name</th>
+			<th>Slot</th>
+			<th>Quantity</th>
+		</tr>
+		{% for i in data['view']%}
+		<tr>
+			<td>{{i['vaccine_name']}}</td>
+			<td>{{i['slot']}}</td>
+			<td>{{i['quantity']}}</td>
+			<td><a href="?action=update&slot_id={{i['slot_id']}}" class="btn btn-success">update</a></td>
+			<td><a href="?action=delete&slot_id={{i['slot_id']}}" class="btn btn-danger">Delete</a></td>
+		</tr>
+		{% endfor%}
+	</table>
+</center>

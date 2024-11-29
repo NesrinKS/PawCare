@@ -1,0 +1,36 @@
+{% include 'admin_header.html'%}
+<br>	<br>	<br>	
+<center>
+<center>
+	<h1>View hospitals</h1>
+	
+
+
+	<table class="table">
+		<tr>
+			<th>Hospital Name</th>
+			<th>Place</th>
+			<th>Phone</th>
+			<th>Email</th>
+			<th>Pincode</th>
+			
+		</tr>
+		{% for i in data['view']
+		%}
+		<tr>
+			<td>{{i['hospital_name']}}</td>
+			<td>{{i['h_place']}}</td>
+			<td>{{i['h_phone']}}</td>
+			<td>{{i['h_email']}}</td>
+			<td>{{i['h_pincode']}}</td>
+			
+			{% if i['user_type']=='pending'%}
+			<td><a href="?action=update&h_id={{i['hospital_id']}}&log_id={{i['login_id']}}" class="btn btn-success">Accept</a></td>
+			<td><a href="?action=delete&h_id={{i['hospital_id']}}&log_id={{i['login_id']}}" class="btn btn-danger">Reject</a></td>
+			{%endif%}
+
+		</tr>
+		{%endfor%}
+	</table>
+</center>
+{% include 'footer.html'%}

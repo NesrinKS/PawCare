@@ -1,0 +1,49 @@
+ {% include 'user_header.html' %}
+
+                            <script type="text/javascript">
+                                function TextOnTextChange() {
+                                    var availableQty = {{data['qty']}};
+                                    var enteredQty = document.getElementById("p_qnty").value;
+                                    var amount = document.getElementById("p_amount").value;
+
+                                    if (enteredQty > availableQty) {
+                                        alert("Entered quantity exceeds available quantity!");
+                                        window.location.reload();
+                                        return;
+                                    }
+
+                                    document.getElementById("t_amount").value = enteredQty * amount;
+                                }
+                            </script>
+
+                            <center>
+                                <h2>Add To Cart</h2>
+                                <form method="post">
+                                    <table class="table" style="width: 500px">
+                                        <tr>
+                                            <th>Product Name</th>
+                                            <td><input type="text"  readonly="" class="form-control" required="" value="{{data['prod']}}" name="pname"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Quantity</th>
+                                            <td><input type="text" class="form-control" required="" id="p_qnty" onchange="TextOnTextChange()" name="qua"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Amount</th>
+                                            <td><input type="text" class="form-control" required="" value="{{data['amo']}}" id="p_amount" name="amo"></td>
+                                        </tr>
+                                        <tr>
+                                            <th>Total</th>
+                                            <td><input type="text" class="form-control" required="" id="t_amount" name="total"></td>
+                                        </tr>
+                                        <tr>
+                                            <td align="center" colspan="2"><input type="submit" class="btn btn-success" onclick="TextOnTextChange()" name="add"></td>
+                                        </tr>
+                                    </table>
+                                </form>
+                            </center>
+                       
+
+
+
+{% include 'footer.html'%}

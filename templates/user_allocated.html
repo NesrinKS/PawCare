@@ -1,0 +1,85 @@
+{% include 'user_header.html'%}
+
+<!-- Hero Start -->
+    <div class="container-fluid bg-primary py-5 mb-5 hero-header4">
+        <div class="container py-5">
+            <div class="row justify-content-start">
+                <div class="col-lg-8 text-center text-lg-start">
+                    <h1 class="display-1 text-uppercase text-dark mb-lg-4" ><span style="color: white">Send Allocation</span></h1>
+                 <form method="post" enctype="multipart/form-data">
+	
+		<table style="width: 500px"  class="table">
+
+			<!-- 	<tr>
+			<th>Amount</th>
+			<td><input type="text" name="amount"></td>
+		</tr> -->
+		<tr>
+			<th>Day</th>
+			<td><input type="date" name="day" class="form-control"></td>
+		</tr>
+		<tr>
+			<th>Duration</th>
+			<td><input type="number" name="no_days" class="form-control"></td>
+		</tr>
+		
+			<tr>
+				<td style="text-align: center;" colspan="2"><input type="submit" name="pet_add" class="btn btn-success"></td>
+			</tr>
+		</table>
+
+	</form>
+
+                    <div class="d-flex align-items-center justify-content-center justify-content-lg-start pt-5">
+                        <!-- <a href="login" class="btn btn-outline-light border-2 py-md-3 px-md-5 me-5">Read More</a> -->
+                        <!-- <button type="button" class="btn-play" data-bs-toggle="modal"
+                            data-src="https://www.youtube.com/embed/DWRcNpR6Kdc" data-bs-target="#videoModal"> -->
+                            <span></span>
+                        </button>
+                        <!-- <h5 class="font-weight-normal text-white m-0 ms-4 d-none d-sm-block">Play Video</h5> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Hero End -->
+
+<h1>View pets allocation</h1>
+	<table class="table">
+		<tr>
+			<th>Start Date</th>
+			<th>Days</th>
+			<th>Amount</th>
+			<th>date</th>
+			<th>Status</th>
+
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+			<td>{{i['day']}}</td>
+			<td>{{i['no_of_days']}}</td>
+			<td>{{i['amount']}}</td>
+			<td>{{i['date']}}</td>
+			<td>{{i['status']}}</td>
+
+			{% if i['status']=='addamount'%}
+			<td><a href="?action=ok&allocation_request_id={{i['allocation_request_id']}}&amount={{i['amount']}}">Ok</a></td>
+
+			{%endif%}
+
+
+
+			{% if i['status']=='ok'%}
+		
+				<td><a href="user_make_pet_allo_payment?allo_id={{i['allocation_request_id']}}&amo={{i['amount']}}">Make Payment</a></td>
+			{%endif%}
+		
+			
+			
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

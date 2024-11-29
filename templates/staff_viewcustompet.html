@@ -1,0 +1,49 @@
+{% include 'staff_header.html'%}
+
+
+
+<h1 style="text-align: center;">View pets allocation</h1>
+	<table class="table">
+		<tr>
+			<th>day</th>
+			<th>Number of day</th>
+			<th>Date</th>
+			<th>Amount</th>
+			
+			<th>Status</th>
+			<th>User Name</th>
+
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+			<td>{{i['day']}}</td>
+			<td>{{i['no_of_days']}}</td>
+
+			
+			<td>{{i['date']}}</td>
+			<td>{{i['amount']}}</td>
+			<td>{{i['status']}}</td>
+			<td>{{i['first_name']}}</td>
+			<td><a href="staff_view_petdetails?uid={{i['user_id']}}">View pets</a></td>
+
+			<td><a href="user_chat?slid={{i['login_id']}}">Chat</a></td>
+			
+			{% if i['status']=='accept'%}
+			<td><a href="addamount1?allocation_request_id={{i['allocation_request_id']}}" class="btn btn-success">Add Amount</a></td>
+			{%endif%}
+
+			{% if i['status']=='assigned'%}
+			<td><a href="?action=accept&allocation_request_id={{i['allocation_request_id']}}" class="btn btn-success">Accept</a></td>
+			<td><a href="?action=reject&allocation_request_id={{i['allocation_request_id']}}" class="btn btn-danger">Reject</a></td>
+			{%endif%}
+
+			
+			
+			
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

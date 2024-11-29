@@ -1,0 +1,35 @@
+{% include 'hospitals_header.html'%}
+<br>	<br>	<br>	
+<center>
+	<h1>View Appointments</h1>
+	<table class="table">
+		<tr>
+			<th>User Name</th>
+			<th>pet Name</th>
+			<th>Date</th>
+			<th>Booking Date</th>
+			<th>Amount</th>
+			<th>Status</th>
+		</tr>
+		{% for i in data['view']%}
+		<tr>
+			<td>{{i['first_name']}}</td>
+			<td>{{i['pet_name']}}</td>
+			<td>{{i['date']}}</td>
+			<td>{{i['booking_date']}}</td>
+			<td>{{i['amount']}}</td>
+			<td>{{i['status']}}</td>
+			{% if i['status']=='pending'%}
+			<td><a href="?action=accept&vid={{i['vet_appointment_id']}}" class="btn btn-success">Accept</a></td>
+			<td><a href="?action=reject&vid={{i['vet_appointment_id']}}" class="btn btn-danger">Reject</a></td>
+			{%endif%}
+			{% if i['status']=='accept'%}
+			<td><a href="hos_addamount?vid={{i['vet_appointment_id']}}" class="btn btn-danger">Add Amount</a></td>
+			{%endif%}
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

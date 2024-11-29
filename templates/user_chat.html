@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat Box</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #f8f9fa;
+        }
+        .chat-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .chat-header {
+            background-color: #3498db;
+            color: #fff;
+            padding: 15px;
+            text-align: center;
+        }
+        .chat-box {
+            overflow-y: auto;
+            height: 500px;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        .chat-box table {
+            width: 100%;
+        }
+        .chat-box td {
+            padding: 10px;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+        .chat-box .staff-message {
+            background-color: #d4edda;
+            color: #155724;
+            text-align: right;
+        }
+        .chat-box .user-message {
+            background-color: #f8d7da;
+            color: #721c24;
+            text-align: left;
+        }
+        .chat-box .timestamp {
+            display: block;
+            font-size: 0.8em;
+            color: #888;
+        }
+        .chat-input {
+            padding: 15px;
+            border-top: 1px solid #ddd;
+            background-color: #fff;
+        }
+        .chat-input .form-control {
+            width: calc(100% - 100px);
+            display: inline-block;
+            margin-right: 10px;
+        }
+        .chat-input .btn {
+            width: 80px;
+        }
+    </style>
+</head>
+<body>
+
+{% include 'staff_header.html' %}
+<br><br><br><br><br><br><br><br>
+<center>
+    <div class="chat-container">
+        <div class="chat-header">
+            <h1>Chat Box</h1>
+        </div>
+        <div id="chatBox" class="chat-box">
+            <table class="table">
+                {% for i in data['view'] %}
+                    <tr>
+                        {% if i['user_type'] == 'staff' %}
+                            <td class="staff-message">
+                                <i class="fas fa-user-tie"></i> {{ i['chat'] }}
+                                <span class="timestamp">{{ i['timestamp'] }}</span>
+                            </td>
+                        {% else %}
+                            <td class="user-message">
+                                <i class="fas fa-user"></i> {{ i['chat'] }}
+                                <span class="timestamp">{{ i['timestamp'] }}</span>
+                            </td>
+                        {% endif %}
+                    </tr>
+                {% endfor %}
+            </table>
+        </div>
+        <form method="post" class="chat-input">
+            <input type="text" class="form-control" name="message" required>
+            <input class="btn btn-outline-info" type="submit" name="submit" value="SEND">
+        </form>
+    </div>
+</center>
+<br><br>
+{% include 'footer.html' %}
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+<script>
+    // Scroll to the bottom of the chat box to show the latest messages
+    document.getElementById('chatBox').scrollTop = document.getElementById('chatBox').scrollHeight;
+</script>
+</body>
+</html>

@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Report</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        .report-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        .report-header {
+            text-align: center;
+            padding: 30px 0;
+        }
+        .report-header h1 {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+        .report-header h2 {
+            font-size: 24px;
+            color: #555;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .report-table th, .report-table td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        .report-table th {
+            background-color: #f8f9fa;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        .report-footer {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function printDiv() {
+            var divContents = document.getElementById("div_print").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html>');
+            a.document.write('<head><title>Appointment Report</title></head>');
+            a.document.write('<body>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+    </script>
+</head>
+
+
+<div id="div_print" class="report-container">
+    <div class="report-header">
+        <h1>Appointment Report</h1>
+        <h2>Details of Scheduled Appointments</h2>
+    </div>
+    <table class="report-table">
+        <thead>
+            <tr>
+                <th>S.No</th>
+                <th>Name</th>
+                <th>Amount</th>
+                <th>No of Days</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for i in data['view'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ i['first_name'] }} {{ i['last_name'] }}</td>
+                <td>{{ i['amount'] }}</td>
+                <td>{{ i['no_of_days'] }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+  
+</div>
+<center><button class="btn btn-info print-button" onclick="printDiv()">Print</button></center>
+
+</body>
+</html>

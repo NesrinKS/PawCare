@@ -1,0 +1,35 @@
+{% include 'staff_header.html'%}
+
+
+
+<center>
+		<table class="table">
+		<tr>
+			<th>Pet name</th>
+			<th>Age</th>
+			<th>Color</th>
+			<th>Breed</th>
+		
+			<th>gender</th>
+
+			<th>Image</th>
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+		<td>{{i['petname']}}</td>
+		<td>{{i['age']}}</td>
+		<td>{{i['color']}}</td>
+		<td>{{i['breed']}}</td>
+		
+		<td>{{i['gender']}}</td>
+		<td><img src="/{{i['pet_image']}}" width="200px" height="200px"></td>
+	
+		<!-- <td><a href="?action=update&pet_id={{i['pet_id']}}" class="btn btn-success">Update</a></td>
+		<td><a href="?action=delete&pet_id={{i['pet_id']}}" class="btn btn-danger">Delete</a></td> -->
+
+	</tr>
+		{% endfor%}
+	</table>
+</center>
+
+{% include 'footer.html'%}

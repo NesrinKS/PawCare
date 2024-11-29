@@ -1,0 +1,37 @@
+{% include 'admin_header.html'%}
+<center>
+	<br>	<br>	
+	<h1>View Shop</h1>
+	<table class="table">
+		<tr>
+			<th>Shop Name</th>
+			<th>owner name</th>
+			<th>Place</th>
+			<th>Email</th>
+			<th>Document</th>
+			<th>Phone</th>
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+			<td>{{i['shop_name']}}</td>
+			<td>{{i['owner_name']}}</td>
+			<td>{{i['s_place']}}</td>
+			<td>{{i['s_email']}}</td>
+			<td><img src="{{i['file_upload']}}" width="200" height="200"></td>
+			<td>{{i['s_phone']}}</td>
+
+			{% if i['user_type']=='pending' %}
+			<td><a href="?action=update&s_id={{i['shop_id']}}&log_id={{i['login_id']}}" class="btn btn-success">Accept</a></td>
+			{% endif %}
+			{% if i['user_type']=='shop' %}
+			<td><a href="?action=delete&s_id={{i['shop_id']}}&log_id={{i['login_id']}}" class="btn btn-danger">Suspend</a></td>
+			{% endif %}
+
+			
+
+		</tr>
+		{% endfor %}
+	</table>
+</center>
+
+{% include 'footer.html'%}

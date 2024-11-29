@@ -1,0 +1,38 @@
+{% include 'admin_header.html'%}
+
+
+
+<h1>View pets allocation</h1>
+	<table class="table">
+		<tr>
+			<th>Start Date</th>
+			<th>Days</th>
+			<th>Amount</th>
+			<th>date</th>
+			<th>Status</th>
+
+		</tr>
+		{% for i in data['view'] %}
+		<tr>
+			<td>{{i['day']}}</td>
+			<td>{{i['no_of_days']}}</td>
+			<td>{{i['amount']}}</td>
+			<td>{{i['date']}}</td>
+			<td>{{i['status']}}</td>
+			<td><a href="admin_view_allo_petdetails?uid={{i['user_id']}}">View pets</a></td>
+<!-- 
+			{% if i['status']=='accept'%}
+			<td><a href="addamount1?allocation_request_id={{i['allocation_request_id']}}" class="btn btn-success">Add Amount</a></td>
+			{%endif%}
+ -->			{% if i['status']=='pending'%}
+			<td><a href="admin_assign_allo_staff?allocation_request_id={{i['allocation_request_id']}}" class="btn btn-success">Assign Staff</a></td>
+			{%endif%}
+			
+			
+		</tr>
+		{% endfor%}
+	</table>
+</center>
+
+
+{% include 'footer.html'%}

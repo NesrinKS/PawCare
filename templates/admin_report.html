@@ -1,0 +1,104 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Appointment Report</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f9fa;
+        }
+        .report-container {
+            max-width: 1000px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .report-header {
+            text-align: center;
+            padding: 20px 0;
+        }
+        .report-header h1 {
+            font-size: 36px;
+            margin: 0;
+            color: #333;
+        }
+        .report-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        .report-table th, .report-table td {
+            padding: 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        .report-table th {
+            background-color: #3498db;
+            color: #fff;
+            font-weight: bold;
+        }
+        .report-table tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+        @media print {
+            .print-button {
+                display: none;
+            }
+            .report-container {
+                box-shadow: none;
+                border: none;
+            }
+        }
+    </style>
+    <script>
+        function printDiv() {
+            var divContents = document.getElementById("div_print").innerHTML;
+            var a = window.open('', '', 'height=500, width=500');
+            a.document.write('<html><head><title>Appointment Report</title>');
+            a.document.write('<style>body { font-family: Arial, sans-serif; margin: 20px; } .report-table { width: 100%; border-collapse: collapse; } .report-table th, .report-table td { padding: 12px; border: 1px solid #ddd; text-align: left; } .report-table th { background-color: #3498db; color: #fff; font-weight: bold; } .report-table tr:nth-child(even) { background-color: #f2f2f2; }</style>');
+            a.document.write('</head><body>');
+            a.document.write(divContents);
+            a.document.write('</body></html>');
+            a.document.close();
+            a.print();
+        }
+    </script>
+</head>
+<body>
+    <div id="div_print" class="report-container">
+        <div class="report-header">
+            <h1>Appointment Report</h1>
+        </div>
+        <table class="report-table">
+            <tr>
+                <th>S.No</th>
+                <th>Category</th>
+                <th>First Name</th>
+                <th>Status</th>
+                <th>Date</th>
+                <th>Pet Name</th>
+                <th>Amount</th>
+            </tr>
+            {% for i in data['r'] %}
+            <tr>
+                <td>{{ loop.index }}</td>
+                <td>{{ i['category_name'] }}</td>
+                <td>{{ i['first_name'] }}</td>
+                <td>{{ i['status'] }}</td>
+                <td>{{ i['date'] }}</td>
+                <td>{{ i['pet_name'] }}</td>
+                <td>{{ i['amount'] }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+    <center><button class="btn btn-info print-button" onclick="printDiv()">Print</button></center>
+</body>
+</html>
